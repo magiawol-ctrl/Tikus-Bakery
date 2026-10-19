@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+  <!-- Background circle -->
+  <circle cx="24" cy="24" r="22" fill="#3e2723" stroke="#d4a574" stroke-width="2"/>
+  
+  <!-- Stacked TB Logo with better spacing -->
+  <!-- T letter - positioned higher -->
+  <text x="24" y="18" 
+        font-family="Georgia, serif" 
+        font-size="16" 
+        font-weight="bold" 
+        fill="#f5e6d3" 
+        text-anchor="middle"
+        dominant-baseline="middle">T</text>
+  
+  <!-- B letter - positioned lower -->
+  <text x="24" y="30" 
+        font-family="Georgia, serif" 
+        font-size="16" 
+        font-weight="bold" 
+        fill="#f5e6d3" 
+        text-anchor="middle"
+        dominant-baseline="middle">B</text>
+</svg>

@@ -1,0 +1,79 @@
+SE333 - Web Technologies 2
+Mid Lab Assessment : E-Commerce Frontend Documentation
+Date: 04/22/2026
+
+Name: Meghfira Khayredin Awol
+ID: EJ7439
+SEction: DRBSE2302 A
+How to Run the Project:
+1. Ensure Node.js is installed on your system
+2. Navigate to the project directory: cd Tikus-Bakery
+3. Install dependencies: npm install
+4. Start the development server: npm run dev
+5. Open your browser and navigate to: http://localhost:5173
+
+Project Overview:
+Tikus Bakery is a complete e-commerce frontend application for a bakery shop, built with React, React Router, Context API, and localStorage for data persistence and caching.
+
+Caching Implementation Explanation:
+
+1. Product Data Cache:
+   - Implemented in src/context/BakeryContext.jsx (lines 42-80)
+   - On first load, simulates network delay of 500ms using setTimeout
+   - Products are cached in localStorage with key "tikus-products-cache"
+   - Cache includes data and timestamp for expiration tracking
+   - 5-minute expiration: 5 * 60 * 1000 milliseconds
+   - Subsequent visits within 5 minutes load instantly from cache
+   - After 5 minutes, re-simulates network delay and refreshes cache
+   - Cache structure: { data: productsArray, timestamp: currentTime }
+
+2. Search/Filter Cache:
+   - Recent searches cached in localStorage with key "tikus-recent-searches"
+   - Maintains last 3 unique search queries (line 128: slice(0, 3))
+   - Search suggestions displayed in navbar search dropdown
+   - Filter selections cached per session using sessionStorage
+   - Category filter persisted with key "tikus-category" (lines 13-19)
+
+3. Cart Persistence:
+   - Cart state cached in localStorage with key "tikus-cart"
+   - Automatic sync on cart changes (lines 34-36)
+   - Survives page refreshes and browser restarts
+   - Includes product details, quantities, and timestamps
+
+4. Order History Cache:
+   - Orders stored in localStorage with key "tikus-orders"
+   - Each order includes: id, date, customer info, items, total
+   - Persistent across sessions for order history functionality
+
+Technical Implementation Details:
+
+- Context API Usage: BakeryContext provides global state management
+- localStorage Usage: For persistent data (cart, orders, products cache, searches)
+- sessionStorage Usage: For session-specific filter selections
+- Cache Invalidation: Time-based expiration for product data (5 minutes)
+- Performance Optimization: Instant loading from cached data when valid
+- Data Structure: All cached data uses JSON serialization for storage
+
+Assumptions Made:
+1. User has modern browser with localStorage support
+2. Network simulation (500ms delay) is adequate for demonstration
+3. 5-minute cache expiration provides balance between freshness and performance
+4. 3 recent searches provide sufficient user experience without excessive storage
+5. All product images are available in the specified paths
+6. Price values are in Ethiopian Birr (ETB)
+7. Stock values represent available inventory for demonstration
+
+Features Implemented:
+- Product catalog with 30+ products across 5 categories
+- Real-time search filtering by product name
+- Category filtering with instant updates
+- Shopping cart with add/remove/update quantity functionality
+- Product details page with full descriptions
+- Checkout form with validation (name, email, address required)
+- Order history with date, items, and total amounts
+- React Router navigation for all required routes
+- Comprehensive caching strategy for performance optimization
+- Responsive design with modern UI/UX
+- Dark brown/cream theme matching bakery aesthetic
+
+All Assessment requirements have been fully implemented and tested.

@@ -1,0 +1,311 @@
+/* ============================= */
+/* 🎨 DESIGN TOKENS (UPGRADED) */
+/* ============================= */
+:root {
+  --bg: #f8f5f2;
+  --primary: #2c1e1e;
+  --accent: #c69c6d;
+  --accent-dark: #a67c52;
+  --muted: #8d6e63;
+
+  --card: #ffffffcc; /* glass effect */
+  --radius: 18px;
+
+  --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.12);
+
+  --blur: blur(12px);
+}
+
+/* ============================= */
+/* 🔄 RESET */
+/* ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================= */
+/* 🌍 GLOBAL */
+/* ============================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", Georgia, serif;
+  background: var(--bg);
+  color: var(--primary);
+  line-height: 1.6;
+}
+
+/* ============================= */
+/* 📦 APP ROOT */
+/* ============================= */
+.app {
+  min-height: 100vh;
+}
+
+/* ============================= */
+/* 📐 LAYOUT */
+/* ============================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+/* ============================= */
+/* ✍️ TYPOGRAPHY */
+/* ============================= */
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: 3.6rem;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+h4 {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ============================= */
+/* 🔘 BUTTONS */
+/* ============================= */
+button {
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-outline {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--primary);
+  padding: 10px 22px;
+  border-radius: 30px;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* ============================= */
+/* 🧱 CARDS */
+/* ============================= */
+.card {
+  background: var(--card);
+  backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================= */
+/* 🖼 HERO */
+/* ============================= */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  position: relative;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero p {
+  margin-bottom: 2rem;
+  color: #f3e9dc;
+}
+
+/* ============================= */
+/* 🧭 NAVBAR (GLASS STYLE) */
+/* ============================= */
+nav {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* NAV LINK */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding-bottom: 4px;
+  transition: 0.3s ease;
+}
+
+/* underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ============================= */
+/* 🧩 GRID */
+/* ============================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* smaller cards */
+  gap: 1.8rem;
+}
+
+/* ============================= */
+/* 🔍 INPUTS */
+/* ============================= */
+input, textarea, select {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(198, 156, 109, 0.2);
+}
+
+/* ============================= */
+/* ⏳ LOADING */
+/* ============================= */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #eee;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+/* ============================= */
+/* 🎬 ANIMATIONS */
+/* ============================= */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================= */
+/* 📱 MOBILE */
+/* ============================= */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .hero-overlay {
+    margin: 0 auto;
+  }
+
+  section {
+    flex-direction: column !important;
+  }
+
+  img {
+    height: auto !important;
+  }
+}
