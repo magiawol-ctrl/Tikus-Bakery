@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useBakery } from "../context/BakeryContext";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { useToast } from "../context/ToastContext";
 
 function ProductDetails() {
@@ -36,7 +36,7 @@ function ProductDetails() {
         }}
       >
         {/* IMAGE */}
-        <motion.img
+        <Motion.img
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           src={product.image}

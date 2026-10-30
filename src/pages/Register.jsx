@@ -48,7 +48,7 @@ function Register() {
         phone: formData.phone,
       });
       navigate("/");
-    } catch (err) {
+    } catch {
       setError("Registration failed. Please try again.");
     } finally {
       setLoading(false);

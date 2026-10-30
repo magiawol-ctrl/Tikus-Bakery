@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useBakery } from "../context/BakeryContext";
 import SearchFilter from "../components/SearchFilter";
 import ProductCard from "../components/ProductCard";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 function Shop() {
-  const { products, addToCart } = useBakery();
+  const { products } = useBakery();
   const [filters, setFilters] = useState({
     search: "",
     category: "All",
@@ -59,14 +59,14 @@ function Shop() {
           }}
         >
           {filteredProducts.map((product, index) => (
-            <motion.div
+            <Motion.div
               key={product.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <ProductCard product={product} />
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
       )}

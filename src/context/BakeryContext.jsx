@@ -1,14 +1,27 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 
 const BakeryContext = createContext();
 
 export function BakeryProvider({ children }) {
   // ---------------- STATE ----------------
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("tikus-cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [orders, setOrders] = useState([]);
-  const [recentSearches, setRecentSearches] = useState([]);
+  const [orders, setOrders] = useState(() => {
+    const savedOrders = localStorage.getItem("tikus-orders");
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+  const [recentSearches, setRecentSearches] = useState(() => {
+    const savedSearches = localStorage.getItem("tikus-recent-searches");
+    if (!savedSearches) return [];
+
+    const searches = JSON.parse(savedSearches);
+    return searches.filter((search) => search && search.trim().length > 2);
+  });
 
     const [sessionCategory, setSessionCategory] = useState(
     () => sessionStorage.getItem("tikus-category") || "All"
@@ -17,25 +30,6 @@ export function BakeryProvider({ children }) {
   useEffect(() => {
     sessionStorage.setItem("tikus-category", sessionCategory);
   }, [sessionCategory]);
-
-  // ---------------- LOAD LOCAL STORAGE ----------------
-  useEffect(() => {
-    const savedCart = localStorage.getItem("tikus-cart");
-    if (savedCart) setCart(JSON.parse(savedCart));
-
-    const savedOrders = localStorage.getItem("tikus-orders");
-    if (savedOrders) setOrders(JSON.parse(savedOrders));
-
-    const savedSearches = localStorage.getItem("tikus-recent-searches");
-    if (savedSearches) {
-      const searches = JSON.parse(savedSearches);
-      // Only keep valid searches (more than 2 characters)
-      const validSearches = searches.filter(search => 
-        search && search.trim().length > 2
-      );
-      setRecentSearches(validSearches);
-    }
-  }, []);
 
   // ---------------- SAVE TO LOCAL STORAGE ----------------
   useEffect(() => {
@@ -83,7 +77,8 @@ export function BakeryProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    loadProducts();
+    const timeoutId = setTimeout(loadProducts, 0);
+    return () => clearTimeout(timeoutId);
   }, [loadProducts]);
 
   // ---------------- CART FUNCTIONS ----------------

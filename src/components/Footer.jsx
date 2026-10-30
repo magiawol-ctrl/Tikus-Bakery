@@ -30,7 +30,6 @@ function Footer() {
             marginBottom: "1rem", 
             color: "#f5deb3",
             lineHeight: "1.6",
-            fontSize: "14px",
             fontFamily: "Arial, sans-serif",
             fontSize: "14px"
           }}>

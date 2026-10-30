@@ -19,7 +19,7 @@ import Orders from "./pages/Orders";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 /* SCROLL RESET */
 function ScrollToTop() {
@@ -38,7 +38,7 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <Motion.div
         key={location.pathname}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ function AnimatedRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </motion.div>
+      </Motion.div>
     </AnimatePresence>
   );
 }

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useBakery } from "../context/BakeryContext";
 
 function Navbar() {
-  const { cart, getCartTotal, addRecentSearch } = useBakery();
+  const { cart, addRecentSearch } = useBakery();
   const location = useLocation();
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);

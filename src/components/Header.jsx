@@ -1,24 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useBakery } from "../context/BakeryContext";
 
 function Header() {
-  const { cart, getCartTotal } = useBakery();
+  const { cart } = useBakery();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [recentSearches, setRecentSearches] = useState([]);
-  const [showUserMenu, setShowUserMenu] = useState(false);
-  const [language, setLanguage] = useState("English");
-  const [locationText, setLocationText] = useState("Addis Ababa, Ethiopia");
-
-  // Load recent searches from localStorage
-  useEffect(() => {
+  const [recentSearches, setRecentSearches] = useState(() => {
     const saved = localStorage.getItem("recentSearches");
-    if (saved) {
-      setRecentSearches(JSON.parse(saved));
-    }
-  }, []);
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -70,7 +63,7 @@ function Header() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#4a90e2">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              {locationText}
+              Addis Ababa, Ethiopia
             </span>
             <span style={{ color: "#4a90e2", fontWeight: "500" }}>
               Free delivery on orders over 1000 ETB

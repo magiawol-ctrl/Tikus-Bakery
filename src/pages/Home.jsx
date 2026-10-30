@@ -1,7 +1,7 @@
 import { useBakery } from "../context/BakeryContext";
 import ProductCard from "../components/ProductCard";
 import SearchFilter from "../components/SearchFilter";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { useRef, useState } from "react";
 
 function Home() {
@@ -338,7 +338,7 @@ function Home() {
               }}
             >
               {filteredProducts.map((product, index) => (
-                <motion.div
+                <Motion.div
                   key={product.id}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -358,7 +358,7 @@ function Home() {
                   }}
                 >
                   <ProductCard product={product} />
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
           )}

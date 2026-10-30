@@ -6,9 +6,6 @@ function Navigation() {
   const {
     cart,
     getCartTotal,
-    products,
-    recentSearches,
-    addRecentSearch,
   } = useBakery();
 
   const location = useLocation();

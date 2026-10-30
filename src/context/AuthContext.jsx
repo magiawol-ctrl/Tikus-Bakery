@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -7,19 +8,12 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user is logged in on mount
+  const [currentUser, setCurrentUser] = useState(() => {
     const savedUser = localStorage.getItem("tikusBakeryUser");
-    if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
-  }, []);
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
-  const login = async (email, password) => {
+  const login = async (email) => {
     try {
       // Simulate API call - replace with actual API call
       // For demo purposes, we'll create a mock user
@@ -34,7 +28,7 @@ export function AuthProvider({ children }) {
        localStorage.setItem("tikusBakeryUser", JSON.stringify(mockUser));
       setCurrentUser(mockUser);
       return mockUser;
-    } catch (error) {
+    } catch {
       throw new Error("Login failed");
     }
   };
@@ -50,7 +44,7 @@ export function AuthProvider({ children }) {
        localStorage.setItem("tikusBakeryUser", JSON.stringify(newUser));
       setCurrentUser(newUser);
       return newUser;
-    } catch (error) {
+    } catch {
       throw new Error("Registration failed");
     }
   };
@@ -73,12 +67,12 @@ export function AuthProvider({ children }) {
     logout,
     updateUser,
     isAuthenticated: !!currentUser,
-    loading,
+    loading: false,
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

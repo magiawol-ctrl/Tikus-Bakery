@@ -1,9 +1,9 @@
 import { useBakery } from "../context/BakeryContext";
 import ProductCard from "../components/ProductCard";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 function Bestsellers() {
-  const { products, addToCart } = useBakery();
+  const { products } = useBakery();
 
   // Bestsellers - top rated and most popular items
   const bestsellerProducts = [
